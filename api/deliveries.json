@@ -1,0 +1,8 @@
+[
+  {"id":"DLV001","customer":"ABC Ltd","driver":"John","date":"2026-07-20","status":"Pending","notes":""},
+  {"id":"DLV002","customer":"XYZ Pvt Ltd","driver":"Rahul","date":"2026-07-21","status":"Delivered","notes":"Received"},
+  {"id":"DLV003","customer":"ABC Ltd","driver":"Rahul","date":"2026-07-22","status":"In Transit","notes":"Left warehouse at 9 AM"},
+  {"id":"DLV004","customer":"TechNova Inc","driver":"John","date":"2026-07-23","status":"Pending","notes":"Fragile items"},
+  {"id":"DLV005","customer":"XYZ Pvt Ltd","driver":"Priya","date":"2026-07-18","status":"Cancelled","notes":"Customer unavailable"},
+  {"id":"DLV006","customer":"GreenCart Co","driver":"Priya","date":"2026-07-24","status":"In Transit","notes":""}
+]

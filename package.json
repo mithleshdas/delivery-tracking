@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-community/netinfo": "12.0.1",
+    "@react-navigation/native": "^7.1.28",
     "expo": "~58.0.26",
     "expo-constants": "~58.0.16",
     "expo-font": "~58.0.12",
@@ -19,17 +23,22 @@
     "react-native-safe-area-context": "~5.11.1",
     "react-native-screens": "~4.30.1",
     "react-native-web": "~0.21.4",
-    "react-native-worklets": "0.13.0"
+    "react-native-worklets": "0.13.0",
+    "zustand": "^5.1.0"
   },
   "devDependencies": {
     "@types/react": "~19.3.0",
+    "concurrently": "^10.0.7",
+    "json-server": "^0.17.4",
     "typescript": "~6.0.3"
   },
   "scripts": {
+    "api": "json-server --watch api/db.json --host 0.0.0.0 --port 3001",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "dev": "concurrently -k --raw \"npm run api\" \"npm run start\""
   },
   "private": true
 }

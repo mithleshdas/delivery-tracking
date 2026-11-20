@@ -1,6 +1,14 @@
-import { useColorScheme as useColorSchemeCore } from 'react-native';
+import { useColorScheme as useSystemColorScheme } from 'react-native';
+
+import { useThemeStore } from '@/store/themeStore';
 
 export const useColorScheme = () => {
-  const coreScheme = useColorSchemeCore();
-  return coreScheme === 'dark' ? 'dark' : 'light';
+  const system = useSystemColorScheme();
+  const preference = useThemeStore((state) => state.preference);
+
+  if (preference === 'light' || preference === 'dark') {
+    return preference;
+  }
+
+  return system === 'dark' ? 'dark' : 'light';
 };

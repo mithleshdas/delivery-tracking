@@ -1,0 +1,102 @@
+{
+  "deliveries": [
+    {
+      "id": "DLV001",
+      "customer": "ABC Ltd",
+      "driver": "John",
+      "date": "2026-07-20",
+      "status": "Pending",
+      "notes": ""
+    },
+    {
+      "id": "DLV002",
+      "customer": "XYZ Pvt Ltd",
+      "driver": "Rahul",
+      "date": "2026-07-21",
+      "status": "Delivered",
+      "notes": "Received"
+    },
+    {
+      "id": "DLV003",
+      "customer": "ABC Ltd",
+      "driver": "Rahul",
+      "date": "2026-07-22",
+      "status": "In Transit",
+      "notes": "Left warehouse at 9 AM"
+    },
+    {
+      "id": "DLV004",
+      "customer": "TechNova Inc",
+      "driver": "John",
+      "date": "2026-07-23",
+      "status": "Pending",
+      "notes": "Fragile items"
+    },
+    {
+      "id": "DLV006",
+      "customer": "GreenCart Co",
+      "driver": "Priya",
+      "date": "2026-07-24",
+      "status": "In Transit",
+      "notes": ""
+    },
+    {
+      "id": "DLV010",
+      "customer": "XYZ Pvt Ltd",
+      "driver": "Rahul",
+      "date": "2026-11-21",
+      "status": "In Transit",
+      "notes": ""
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "ABC Ltd"
+    },
+    {
+      "id": 2,
+      "name": "XYZ Pvt Ltd"
+    },
+    {
+      "id": 3,
+      "name": "TechNova Inc"
+    },
+    {
+      "id": 4,
+      "name": "GreenCart Co"
+    }
+  ],
+  "drivers": [
+    {
+      "id": 1,
+      "name": "John"
+    },
+    {
+      "id": 2,
+      "name": "Rahul"
+    },
+    {
+      "id": 3,
+      "name": "Priya"
+    }
+  ],
+  "statuses": [
+    {
+      "id": 1,
+      "name": "Pending"
+    },
+    {
+      "id": 2,
+      "name": "In Transit"
+    },
+    {
+      "id": 3,
+      "name": "Delivered"
+    },
+    {
+      "id": 4,
+      "name": "Cancelled"
+    }
+  ]
+}

@@ -1,41 +1,73 @@
 import { useFonts } from 'expo-font';
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+import {
+  DarkTheme,
+  DefaultTheme,
+  Stack,
+  ThemeProvider,
+} from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { Palette } from '@/constants/theme';
+import { useThemeStore } from '@/store/themeStore';
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+export { ErrorBoundary } from 'expo-router';
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   anchor: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+const LightNavTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Palette.light.tint,
+    background: Palette.light.background,
+    card: Palette.light.surface,
+    text: Palette.light.text,
+    border: Palette.light.border,
+  },
+};
+
+const DarkNavTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    primary: Palette.dark.tint,
+    background: Palette.dark.background,
+    card: Palette.dark.surface,
+    text: Palette.dark.text,
+    border: Palette.dark.border,
+  },
+};
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+  const hydrateTheme = useThemeStore((state) => state.hydrate);
+  const themeHydrated = useThemeStore((state) => state.hydrated);
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
 
   useEffect(() => {
-    if (loaded) {
+    void hydrateTheme();
+  }, [hydrateTheme]);
+
+  useEffect(() => {
+    if (loaded && themeHydrated) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, themeHydrated]);
 
-  if (!loaded) {
+  if (!loaded || !themeHydrated) {
     return null;
   }
 
@@ -46,10 +78,18 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkNavTheme : LightNavTheme}>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen
+          name="delivery/new"
+          options={{ title: 'New Delivery', presentation: 'card' }}
+        />
+        <Stack.Screen
+          name="delivery/[id]"
+          options={{ title: 'Edit Delivery', presentation: 'card' }}
+        />
       </Stack>
     </ThemeProvider>
   );
